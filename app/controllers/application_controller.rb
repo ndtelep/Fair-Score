@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
 
-    # def hello_world
+    def json_index
     #     session[:count] = (session[:count] || 0) + 1
     #     render json: { count: session[:count] }
-    # end    
+        teams = Team.all
+        render json: teams.to_json
+    end    
 end

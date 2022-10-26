@@ -1,4 +1,3 @@
 class Player < ApplicationRecord
-    has_one :team
-    has_many :games, through: :team
+  belongs_to :team
 end
