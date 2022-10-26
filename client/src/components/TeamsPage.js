@@ -4,10 +4,12 @@ import TeamList from './TeamList'
 // import SideBar from "./SideBar";
 // import WinnerList from "./WinnerList";
 // import PlayerList from './PlayerList'
+import CreateATeam from "./CreateATeam";
+import "../App.css";
 
 
 function TeamPage () {
-    const [service, setService] = useState(null);
+    const [league, setLeague] = useState([]);
     const [header, setHeader] = useState(null);
     const [id, setId] = useState("");
     const [winner, setWinner] = useState([]);
@@ -16,34 +18,32 @@ function TeamPage () {
     const [teamId, setTeamId] = useState(null)
     const [teamName, setTeamName] = useState("")
     const [display, setDisplay] = useState(false);
+    const [image_url, setImageUrl] = useState("")
 
     
-      useEffect(() => {
-        fetch(`teams/players`)
-        .then((r) => r.json())
-      .then((team) => setTeam(team));
-  }, []);
+  //     useEffect(() => {
+  //       fetch(`teams/players`)
+  //       .then((r) => r.json())
+  //     .then((team) => setTeam(team));
+  // }, []);
   
       useEffect(() => {
           fetch(`/teams`)
           .then((r) => r.json())
-        .then((service) => setService(service));
+        .then((leauge) => setLeague(leauge));
     }, []);
   
 
   
-    const displayedTeams = service
+    
 
   
     const deliveryPage = <div className="delivery-page">
     <div className="main-column">
       <div className="team-header">
-        <span role="img">
-            <img className="delivery-picture" src="https://cdn-icons-png.flaticon.com/512/1048/1048329.png"></img>
-        </span>
-        <h1 className="team-header">{teamName}</h1>
+        <CreateATeam/>
         </div>
-      <TeamList team={team} teamName={teamName} setDisplay={setDisplay}/>
+     {/* <TeamList league={league} nickName={teamName} setDisplay={setDisplay}/>*/}
     </div>
     </div>
   
@@ -52,23 +52,29 @@ function TeamPage () {
           <div className="team-header">
             <span role="img">
               <a href="/">
-                <img className="delivery-picture" src="https://cdn-icons-png.flaticon.com/512/1048/1048329.png"></img>
+                <img className="delivery-picture" src="https://cdn-icons-png.flaticon.com/512/46/46106.png"></img>
               </a>
             </span>
             <h1 className="team-header">{header}</h1>
           </div>
           <div className="sponsored-team">
-            <img className="sponsored-pic" src="https://images.unsplash.com/photo-1629814249584-bd4d53cf0e7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80"/>
-            <p className="sponsor-text">Sponsored</p>
+            
+            <p className="sponsor-text">Fair-Score</p>
           </div>
+          {deliveryPage}
          
-          <TeamList services={displayedTeams} id={id} handleTeamClick={handleTeamClick} teamId={teamId} setTeamId={setTeamId} setTeamName={setTeamName}/>
+          <TeamList league={league} />
         </div>
     
     function handleTeamClick(){
       setSwitchTrue(!switchTrue)
       console.log(switchTrue)
     }
+    return(
+      <div>
+      {teamPage}
+      </div>
+      )
 }
   
   export default TeamPage;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
 
-function CreateATeam({ onLogin }) {
+function CreateATeam() {
   const [nickName, setNickName] = useState("");
   const [location, setLocation] = useState("");
   const [homeVenue, setHomeVenue] = useState("");
@@ -17,7 +17,7 @@ function CreateATeam({ onLogin }) {
   const [player10, setPlayer10] = useState("");
   const [player11, setPlayer11] = useState("");
   const [player12, setPlayer12] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+ 
   const [imageUrl, setImageUrl] = useState("");
   const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
@@ -27,37 +27,37 @@ function CreateATeam({ onLogin }) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch("/signup", {
+    fetch("/teams", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         location: location,
-        homeVenue: homeVenue,
-        nickName: nickName,
+        home_venue: homeVenue,
+        nickname: nickName,
         image_url: imageUrl,
-        players :{
-        player1: player1,
-        player2: player2,
-        player3: player3,
-        player4: player4,
-        player5: player5,
-        player6: player6,
-        player7: player7,
-        player8: player8,
-        player9: player9,
-        player10: player10,
-        player11: player11,
-        player12: player12,
-        }
+        // players :{
+        // player1: player1,
+        // player2: player2,
+        // player3: player3,
+        // player4: player4,
+        // player5: player5,
+        // player6: player6,
+        // player7: player7,
+        // player8: player8,
+        // player9: player9,
+        // player10: player10,
+        // player11: player11,
+        // player12: player12,
+        // }
 
         
       }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((team) =>(team));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -67,37 +67,167 @@ function CreateATeam({ onLogin }) {
   return (
     <form onSubmit={handleSubmit}>
       <FormField>
-        <Label htmlFor="username">Username</Label>
+        <Label htmlFor="username">Team Name</Label>
         <Input
           type="text"
-          id="username"
+          id="nickName"
           autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={nickName}
+          onChange={(e) => setNickName(e.target.value)}
         />
       </FormField>
       <FormField>
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password">Location</Label>
         <Input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          id="location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
           autoComplete="current-password"
         />
       </FormField>
       <FormField>
-        <Label htmlFor="password">Password Confirmation</Label>
+        <Label htmlFor="password">Home Venue</Label>
         <Input
-          type="password"
-          id="password_confirmation"
-          value={passwordConfirmation}
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
+          type="text"
+          id="home-venue"
+          value={homeVenue}
+          onChange={(e) => setHomeVenue(e.target.value)}
+          
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Team Logo</Label>
+        <Input
+          type="text"
+          id="team-logo"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      {/* <FormField>
+        <Label htmlFor="password">Player 1</Label>
+        <Input
+          type="text"
+          id="p1"
+          value={player1}
+          onChange={(e) => setPlayer1(e.target.value)}
           autoComplete="current-password"
         />
       </FormField>
       <FormField>
-        <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
+        <Label htmlFor="password">Player 2</Label>
+        <Input
+          type="text"
+          id="p2"
+          value={player2}
+          onChange={(e) => setPlayer2(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 3</Label>
+        <Input
+          type="text"
+          id="p3"
+          value={player3}
+          onChange={(e) => setPlayer3(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 4</Label>
+        <Input
+          type="text"
+          id="p4"
+          value={player4}
+          onChange={(e) => setPlayer4(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 5</Label>
+        <Input
+          type="text"
+          id="p5"
+          value={player5}
+          onChange={(e) => setPlayer5(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 6</Label>
+        <Input
+          type="text"
+          id="p6"
+          value={player6}
+          onChange={(e) => setPlayer6(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 7</Label>
+        <Input
+          type="text"
+          id="p7"
+          value={player7}
+          onChange={(e) => setPlayer7(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 8</Label>
+        <Input
+          type="text"
+          id="p8"
+          value={player8}
+          onChange={(e) => setPlayer8(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 9</Label>
+        <Input
+          type="text"
+          id="p9"
+          value={player9}
+          onChange={(e) => setPlayer9(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 10</Label>
+        <Input
+          type="text"
+          id="p10"
+          value={player10}
+          onChange={(e) => setPlayer10(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 11</Label>
+        <Input
+          type="text"
+          id="p11"
+          value={player11}
+          onChange={(e) => setPlayer11(e.target.value)}
+          autoComplete="current-password"
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="password">Player 12</Label>
+        <Input
+          type="text"
+          id="p12"
+          value={player12}
+          onChange={(e) => setPlayer12(e.target.value)}
+          autoComplete="current-password"
+        /> */}
+      {/* </FormField> */}
+      <FormField>
+        <Button type="submit">{isLoading ? "Loading..." : "Submit Team"}</Button>
       </FormField>
       <FormField>
         {errors.map((err) => (

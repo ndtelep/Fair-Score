@@ -3,3 +3,66 @@
   flex-direction: column;
   align-items: center;
 }
+.delivery-picture {
+  width: 50px
+}
+.restaurant-cards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+.restaurant-page {
+  display: flex;
+  flex-direction: row;
+}
+.individual-card {
+  margin: 1rem;
+}
+
+.individual-card img {
+  width: 100%;
+  aspect-ratio: inherent;
+}
+
+@media (min-width: 768px) {
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .individual-card {
+    width: calc(33% - 2rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .individual-card {
+    width: calc(25% - 2rem);
+  }
+}
+
+@media (min-width: 1200px) {}
+  .individual-card {
+    width: calc(20% - 2rem);
+  }
+  .cards {
+    list-style: none;
+  }
+  ul.cards {
+    padding-right: 17.4rem;
+  }
+  .card-image {
+    object-fit: cover;
+    width: 100%;
+    height: 15vw;
+    border-radius: 2% 2% 0 0;
+    border: 0.5px solid black;
+  }
+  .card-text {
+    margin-left: 1rem;
+    padding-bottom: 0.4;
+  }
+    

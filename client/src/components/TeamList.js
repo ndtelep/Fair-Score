@@ -1,11 +1,11 @@
 import React from 'react';
 import TeamCard from './TeamCard'
 
-function TeamList ( {services, id, handleTeamClick, TeamId, setTeamId, setTeamName } ) {
+function TeamList ( {league} ) {
 
     return (
-        <ul className="cards">{services.map((service) => {
-            return <TeamCard  id = {id} key = {service.id} service = {service} handleTeamClick={handleTeamClick} TeamId={TeamId} setTeamId={setTeamId} setTeamName={setTeamName}/>
+        <ul className="cards">{league.map((team) => {
+            return <TeamCard   key = {team.id} team = {team} />
         })}</ul>
       );
 };
