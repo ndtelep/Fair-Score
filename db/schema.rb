@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_055326) do
     t.string "location"
     t.string "nickname"
     t.string "home_venue"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
