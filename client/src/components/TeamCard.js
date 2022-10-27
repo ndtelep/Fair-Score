@@ -1,6 +1,6 @@
 
 
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
     
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
             setTeamName(team)
           }*/
       
-        const navigate = useNavigate();
+        const navigate = useHistory();
         return (
             <li className="individual-card">
               <div className="container-card">

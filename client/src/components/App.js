@@ -9,7 +9,7 @@ import Login from '../pages/Login';
 // import About from './About'
 
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
     const [token, setToken] = useState();
@@ -20,8 +20,8 @@ function App() {
 
   return (
     <div className="app">
-      <Router>
-        <Routes>
+      
+        <Switch>
             <Route exact path="/" element={
                 <Home />
             }/>
@@ -40,8 +40,8 @@ function App() {
              <Route path="/login" element={
                 <Login />
             }/>
-            </Routes>   
-        </Router>
+            </Switch>   
+       
     </div>
 )};
 
