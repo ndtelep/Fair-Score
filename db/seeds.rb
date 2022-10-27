@@ -1,7 +1,7 @@
 puts "Seeding teams..."
-sizzlers = Team.create(location: 'Topeka', nickname: 'Sizzlers', home_venue: 'Kansas Expocentre')
-rockets = Team.create(location: 'Denver', nickname: 'Rockets', home_venue: 'Denver Coliseum')
-blizzard = Team.create(location: 'New England', nickname: 'Blizzard', home_venue: 'Hartford Civic Center')
+sizzlers = Team.create(location: 'Topeka', nickname: 'Sizzlers', home_venue: 'Kansas Expocentre',imageUrl:"https://www.mascotdb.com/sites/default/files/images/logos/79590-2.gif", user_id: 1)
+rockets = Team.create(location: 'Denver', nickname: 'Rockets', home_venue: 'Denver Coliseum',imageUrl:"https://static.wikia.nocookie.net/prosportsteams/images/a/ad/DVR.gif/revision/latest?cb=20140521003655", user_id: 1)
+blizzard = Team.create(location: 'New England', nickname: 'Blizzard', home_venue: 'Hartford Civic Center',imageUrl:"https://upload.wikimedia.org/wikipedia/en/5/59/NEBlizzard.gif", user_id: 1)
 puts "Seeding games..."
 Game.create!([
     {team_id: blizzard.id,
@@ -61,5 +61,13 @@ Player.create!([
                 steals: 1,
                 blocks: 9,
                 number: 22},
+])
+
+User.create!([
+{name: "ndtelep",
+password: "nicolas",},
+
+{name: "edward",
+password: "edward",} 
 ])
 puts "Done seeding!"

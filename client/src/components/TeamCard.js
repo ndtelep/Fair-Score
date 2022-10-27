@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
     
     function TeamCard( { team } ) {
-      const {location, nickname, home_venue} = team;
+      const {location, nickname, home_venue, imageUrl} = team;
         //const {name, image_url} = service
       //   should we also do rating? can't access it from the current table, though
           console.log(team)
@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
                 <div className="row">
                   <div className="col">
                     <div className="card h-100">
-                      <img className="card-image" variant="top" src={""} alt={team}/>
+                      <img className="card-image" variant="top" src={imageUrl} alt={team}/>
                       <div className="card-text">
                         <h3>{location}</h3>
                         <h3>{nickname}</h3>

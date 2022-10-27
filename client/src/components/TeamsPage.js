@@ -43,7 +43,7 @@ function TeamPage () {
       <div className="team-header">
         <CreateATeam/>
         </div>
-     {/* <TeamList league={league} nickName={teamName} setDisplay={setDisplay}/>*/}
+     <TeamList league={league} nickName={teamName} setDisplay={setDisplay}/>
     </div>
     </div>
   
@@ -63,7 +63,7 @@ function TeamPage () {
           </div>
           {deliveryPage}
          
-          <TeamList league={league} />
+          {/* <TeamList league={league} /> */}
         </div>
     
     function handleTeamClick(){

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show update destroy ]
-  wrap_parameters format: []
+  # before_action :set_user, only: %i[ show update destroy ]
+  # wrap_parameters format: []
 
   # GET /users
   def index
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    render json: current_user, status: :ok
   end
 
   # POST /users
