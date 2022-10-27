@@ -14,9 +14,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
     const [token, setToken] = useState();
 
-    // if(!token) {
-    //     return <Login setToken={setToken} />
-    //   }
+    if(!token) {
+        return <Login setToken={setToken} />
+      }
 
   return (
     <div className="app">
@@ -37,9 +37,9 @@ function App() {
             {/* <Route path="/about" element={
                 <About />
             }/> */}
-             {/* <Route path="/login" element={
+             <Route path="/login" element={
                 <Login />
-            }/> */}
+            }/>
             </Routes>   
         </Router>
     </div>

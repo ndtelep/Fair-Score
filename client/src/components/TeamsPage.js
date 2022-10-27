@@ -30,7 +30,7 @@ function TeamPage () {
       useEffect(() => {
           fetch(`/teams`)
           .then((r) => r.json())
-        .then((leauge) => setLeague(leauge));
+        .then((league) => setLeague(league));
     }, []);
   
 

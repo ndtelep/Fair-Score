@@ -20,9 +20,10 @@ function LoginForm({ onLogin }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
       }
+      // } else {
+      //   r.json().then((err) => setErrors(err.errors));
+      // }
     });
   }
 
@@ -53,11 +54,11 @@ function LoginForm({ onLogin }) {
           {isLoading ? "Loading..." : "Login"}
         </Button>
       </FormField>
-      <FormField>
+      {/* <FormField>
         {errors.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
-      </FormField>
+      </FormField> */}
     </form>
   );
 }

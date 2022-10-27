@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show update destroy ]
+  wrap_parameters format: []
+
 
   # GET /games
   def index
@@ -15,27 +17,20 @@ class GamesController < ApplicationController
 
   # POST /games
   def create
-    @game = Game.new(game_params)
-
-    if @game.save
-      render json: @game, status: :created, location: @game
-    else
-      render json: @game.errors, status: :unprocessable_entity
-    end
+    @game = Game.create!(game_params)
+    render json: @game, status: :created, location: @game
   end
 
   # PATCH/PUT /games/1
   def update
-    if @game.update(game_params)
-      render json: @game
-    else
-      render json: @game.errors, status: :unprocessable_entity
-    end
+    @game.update!(game_params)
+    render json: @game, status: :accepted
   end
 
   # DELETE /games/1
   def destroy
     @game.destroy
+    head :no_content
   end
 
   private
@@ -46,6 +41,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.require(:game).permit(:opposing_team, :venue, :win, :home, :completed, :team_id)
+      params.permit(:opposing_team, :venue, :win, :home, :completed, :team_id)
     end
 end

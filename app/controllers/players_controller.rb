@@ -1,5 +1,7 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show update destroy ]
+  wrap_parameters format: []
+
 
   # GET /players
   def index
@@ -15,27 +17,20 @@ class PlayersController < ApplicationController
 
   # POST /players
   def create
-    @player = Player.new(player_params)
-
-    if @player.save
-      render json: @player, status: :created, location: @player
-    else
-      render json: @player.errors, status: :unprocessable_entity
-    end
+    @player = Player.create!(player_params)
+    render json: @player, status: :created, location: @player
   end
 
   # PATCH/PUT /players/1
   def update
-    if @player.update(player_params)
-      render json: @player
-    else
-      render json: @player.errors, status: :unprocessable_entity
-    end
+    @player.update!(player_params)
+    render json: @player, status: :unprocessable_entity
   end
 
   # DELETE /players/1
   def destroy
     @player.destroy
+    head :no_content
   end
 
   private
@@ -46,6 +41,6 @@ class PlayersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def player_params
-      params.require(:player).permit(:first_name, :last_name, :number, :points, :assists, :rebounds, :steals, :blocks, :team_id)
+      params.permit(:first_name, :last_name, :number, :points, :assists, :rebounds, :steals, :blocks, :team_id)
     end
 end
