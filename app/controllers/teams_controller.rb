@@ -1,5 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[ show update destroy ]
+  wrap_parameters format: []
+
 
   # GET /teams
   def index
@@ -15,27 +17,20 @@ class TeamsController < ApplicationController
 
   # POST /teams
   def create
-    @team = Team.new(team_params)
-
-    if @team.save
-      render json: @team, status: :created, location: @team
-    else
-      render json: @team.errors, status: :unprocessable_entity
-    end
+    @team = Team.create!(team_params)
+    render json: @team, status: :created, location: @team
   end
 
   # PATCH/PUT /teams/1
   def update
-    if @team.update(team_params)
-      render json: @team
-    else
-      render json: @team.errors, status: :unprocessable_entity
-    end
+    @team.update!(team_params)
+    render json: @team, status: :unprocessable_entity
   end
 
   # DELETE /teams/1
   def destroy
     @team.destroy
+    head :no_content
   end
 
   private
@@ -46,6 +41,6 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.require(:team).permit(:location, :nickname, :home_venue)
+      params.permit(:location, :nickname, :home_venue)
     end
 end

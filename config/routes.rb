@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users, only: [:show, :create]
   resources :players
   resources :games
   resources :teams
@@ -6,5 +7,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get '/index', to: 'application#json_index'
 end
