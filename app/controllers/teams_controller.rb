@@ -13,6 +13,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   def show
     render json: @teams
+
   end
 
   # POST /teams
@@ -29,8 +30,11 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1
   def destroy
-    @team.destroy
+    
+    team= Team.find_by_id(params[:id])
+    team.destroy
     head :no_content
+
   end
 
   private
@@ -41,6 +45,6 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.permit(:location, :nickname, :home_venue, :imageUrl)
+      params.permit(:location, :nickname, :home_venue, :imageUrl, :id)
     end
 end

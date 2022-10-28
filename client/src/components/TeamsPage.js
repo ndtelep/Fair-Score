@@ -5,6 +5,7 @@ import TeamList from './TeamList'
 // import WinnerList from "./WinnerList";
 // import PlayerList from './PlayerList'
 import CreateATeam from "./CreateATeam";
+import  { Link, useParams, useHistory } from 'react-router-dom'
 import "../App.css";
 
 
@@ -13,19 +14,20 @@ function TeamPage () {
     const [header, setHeader] = useState(null);
     const [id, setId] = useState("");
     const [winner, setWinner] = useState([]);
-    const [team, setTeam] = useState([])
+    
     const [switchTrue, setSwitchTrue] = useState(false)
     const [teamId, setTeamId] = useState(null)
     const [teamName, setTeamName] = useState("")
     const [display, setDisplay] = useState(false);
     const [image_url, setImageUrl] = useState("")
+    const params = useParams()
+const history = useHistory()
+
+    const deleteTeam = (id) => setLeague(current => current.filter(p => p.id !== id)) 
+
 
     
-  //     useEffect(() => {
-  //       fetch(`teams/players`)
-  //       .then((r) => r.json())
-  //     .then((team) => setTeam(team));
-  // }, []);
+      
   
       useEffect(() => {
           fetch(`/teams`)
@@ -33,6 +35,21 @@ function TeamPage () {
         .then((league) => setLeague(league));
     }, []);
   
+    function handleDelete(){
+      //DELETE to `/productions/${params.id}`
+      fetch(`/team/${params.id}`,{
+        method:'DELETE',
+        headers: {'Content-Type': 'application/json'}
+      })
+      .then(res => {
+        if(res.ok){
+          deleteTeam(id)
+          history.push('/')
+      //   } else {
+      //     res.json().then(data => setErrors(Object.entries(data.errors).map(e => `${e[0]} ${e[1]}`)))
+      //   }
+      }})
+    }
 
   
     
@@ -43,7 +60,7 @@ function TeamPage () {
       <div className="team-header">
         <CreateATeam/>
         </div>
-     <TeamList league={league} nickName={teamName} setDisplay={setDisplay}/>
+     <TeamList league={league} nickName={teamName} setDisplay={setDisplay} handleDelete= {handleDelete} id={id}/>
     </div>
     </div>
   

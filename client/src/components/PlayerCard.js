@@ -1,15 +1,12 @@
-import {Link} from 'react-router-dom'
-
-
 import { useHistory } from "react-router-dom";
 
 
     
-    function TeamCard( { team, handleDelete} ) {
-      const {location, nickname, home_venue, imageUrl, id} = team;
+    function PlayerCard( { player } ) {
+      const {first_name, last_name, number, points, assists, rebounds, steals, blocks, id} = player;
         //const {name, image_url} = service
       //   should we also do rating? can't access it from the current table, though
-          console.log(team)
+          console.log(player)
           /*function handleClicking(){
             handleTeamClick()
             setTeamName(team)
@@ -22,11 +19,11 @@ import { useHistory } from "react-router-dom";
                 <div className="row">
                   <div className="col">
                     <div className="card h-100">
-                      <img className="card-image" variant="top" src={imageUrl} alt={team}/>
+                      {/* <img className="card-image" variant="top" src={imageUrl} alt={team}/> */}
                       <div className="card-text">
-                        <h3>{location}</h3>
-                        <Link to={`/teams/${team.id}}`}> <h2>{nickname}</h2></Link>
-                        <button onClick={handleDelete}>Delete Team</button>
+                        <h3>{first_name}</h3>
+                        <h3>{last_name}</h3>
+                        <h3>{number}</h3>
                         
                       </div>
                     </div>
@@ -37,5 +34,4 @@ import { useHistory } from "react-router-dom";
         );
       }
       
-      export default TeamCard;
-
+      export default PlayerCard;

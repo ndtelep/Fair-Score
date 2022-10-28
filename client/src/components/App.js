@@ -7,6 +7,8 @@ import PlayerPage from './PlayerPage';
 import Login from '../components/Login';
 // import Contact from './Contact'
 // import About from './About'
+import Navigation from './Navigation';
+import SignUp from './SignUp';
 
 
 import { Switch, Route } from 'react-router-dom';
@@ -61,36 +63,36 @@ function App() {
 // )};
 return (
     <>
-    <TeamsPage updateUser={updateUser}/>
+    <Navigation updateUser={updateUser}/>
     {!currentUser? <Login error={'please login'} updateUser={updateUser}/> : 
       <Switch>
 
-      {/* <Route  path='/productions/new'>
-        <ProductionForm addProduction={addProduction}/>
-      </Route> */}
+      <Route  path='/'>
+        <TeamsPage updateUser={updateUser}/>
+      </Route>
       {/* <Route  path='/productions/:id/edit'>
         <EditProductionForm updateProduction={updateProduction}/>
       </Route> */}
      
-      {/* <Route path='/productions/:id'>
-          <ProductionDetail deleteProduction={deleteProduction}/>
-      </Route> */}
+      <Route path='/teams/:id'>
+          <PlayerPage />
+      </Route>
 
-      {/* <Route path='/users/new'>
+      <Route path='/users/new'>
         <SignUp />
-      </Route> */}
+      </Route>
 
-      {/* <Route path='/users/:id'>
-        <TeamsPage />
-      </Route> */}
+      <Route path='/users/:id'>
+        <TeamsPage updateUser={updateUser}/>
+      </Route>
 
       <Route path='/login'>
         <Login updateUser={updateUser}/>
       </Route>
 
     
-      {/* <Route exact path='/'>
-        <Home  productions={productions}/>
+      {/* <Route exact path='/teams/:id/edit'>
+        <UpdateTeam/>
       </Route> */}
 
       {/* <Route>
